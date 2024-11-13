@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class RTL extends Component
+class Transactions extends Component
 {
     public function render()
     {
-        return view('livewire.r-t-l');
+        return view('livewire.transactions');
     }
 }
