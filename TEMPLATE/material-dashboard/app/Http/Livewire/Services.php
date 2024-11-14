@@ -6,8 +6,13 @@ use Livewire\Component;
 
 class Services extends Component
 {
+    public $tambahServices;
+    
     public function render()
     {
         return view('livewire.services');
     }
+
+    // UI
+    
 }
