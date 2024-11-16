@@ -1,4 +1,4 @@
-
+{{-- 
             <div class="container my-auto mt-5">
                 <div class="row signin-margin">
                     <div class="col-lg-4 col-md-8 col-12 mx-auto">
@@ -40,7 +40,7 @@
                                         </button>
                                     </div>
                                     @endif
-                                    <div class="input-group input-group-outline mt-3 @if(strlen($email ?? '') > 0) is-filled @endif">
+                                    <div class="input-group input-group-outline mt-3 @if (strlen($email ?? '') > 0) is-filled @endif">
                                         <label class="form-label">Email</label>
                                         <input wire:model.live='email' type="email" class="form-control">
                                     </div>
@@ -48,7 +48,7 @@
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
 
-                                    <div class="input-group input-group-outline mt-3 @if(strlen($password ?? '') > 0) is-filled @endif">
+                                    <div class="input-group input-group-outline mt-3 @if (strlen($password ?? '') > 0) is-filled @endif">
                                         <label class="form-label">Password</label>
                                         <input wire:model.live="password" type="password" class="form-control"
                                              >
@@ -80,4 +80,61 @@
                         </div>
                     </div>
                 </div>
+            </div> --}}
+
+<div>
+    <!-- -------- START HEADER 7 w/ text and video ------- -->
+    <header class="bg-gradient-dark">
+        <div class="page-header min-vh-25" style="background-image: url('./assets/img/bg.jpg');">
+            <span class="mask bg-gradient-dark opacity-6"></span>
+        </div>
+    </header>
+    <!-- -------- END HEADER 7 w/ text and video ------- -->
+    <div class="card card-body shadow-xl col-md-5 col-11 mt-n6 pb-0 mx-auto">
+        <section>
+            <div class="container py-4">
+                <div class="row">
+                    <div class="col-md-9 col-12 mx-auto d-flex justify-content-center flex-column">
+                        <h4 class="text-center mb-4">ADMIN</h4>
+                        <form wire:submit='store'>
+                            @if (Session::has('status'))
+                            <div class="alert alert-success alert-dismissible text-white" role="alert">
+                                <span class="text-sm">{{ Session::get('status') }}</span>
+                                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            @endif
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="mb-4">
+                                        <div class="input-group input-group-dynamic mb-4 @if (strlen($email ?? '') > 0) is-filled @endif">
+                                            <label class="form-label">Email</label>
+                                            <input wire:model.live='email' type="email" class="form-control">
+                                        </div>
+                                        @error('email')
+                                        <p class='text-danger text-sm inputerror'>{{ $message }} </p>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="input-group input-group-dynamic @if (strlen($password ?? '') > 0) is-filled @endif">
+                                        <label class="form-label">Password</label>
+                                        <input wire:model.live="password" type="password" class="form-control">
+                                    </div>
+                                    @error('password')
+                                    <p class='text-danger text-sm inputerror'>{{ $message }} </p>
+                                    @enderror
+                                </div>
+                                <div class="row">
+                                    <button type="submit" class="btn bg-gradient-dark w-100">LOGIN</button>
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
             </div>
+    </div>
+    </section>
+</div>
+</div>

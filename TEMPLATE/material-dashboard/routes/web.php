@@ -17,7 +17,8 @@ use App\Http\Livewire\Services;
 use App\Http\Livewire\StaticSignIn;
 use App\Http\Livewire\StaticSignUp;
 use App\Http\Livewire\Tables;
-use App\Http\Livewire\VirtualReality;
+use App\Http\Livewire\Guest;
+use App\Http\Livewire\Check;
 use GuzzleHttp\Middleware;
 
 /*
@@ -31,25 +32,32 @@ use GuzzleHttp\Middleware;
 |
 */
 
-Route::get('/', function(){
-    return redirect('sign-in');
-});
-
 Route::get('forgot-password', ForgotPassword::class)->middleware('guest')->name('password.forgot');
 Route::get('reset-password/{id}', ResetPassword::class)->middleware('signed')->name('reset-password');
 
 
 
 Route::get('sign-up', Register::class)->middleware('guest')->name('register');
-Route::get('sign-in', Login::class)->middleware('guest')->name('login');
+// Route::get('sign-in', Login::class)->middleware('guest')->name('login');
 
 Route::get('user-profile', UserProfile::class)->middleware('auth')->name('user-profile');
 Route::get('user-management', UserManagement::class)->middleware('auth')->name('user-management');
 
-Route::prefix('user')->group(function () {
-    Route::get('/', VirtualReality::class)->name('user-home');
-    Route::get('/check', UserProfile::class)->name('user-check');
+
+// USED
+Route::get('/', function(){
+    return redirect(route('user-home'));
 });
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::prefix('user')->group(function () {
+        Route::get('/', Guest::class)->name('user-home');
+        Route::get('/home', Guest::class)->name('user-home');
+        Route::get('/check', Check::class)->name('user-check');
+    });
+});
+
+Route::get('admin/sign-in', Login::class)->middleware('guest')->name('login');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::prefix('admin')->group(function () {
@@ -61,6 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('static-sign-up', StaticSignUp::class)->name('static-sign-up');
         
         // USED
+        Route::get('/', Dashboard::class)->name('dashboard');
         Route::get('dashboard', Dashboard::class)->name('dashboard');
         Route::get('transactions', Transactions::class)->name('transactions');
         Route::get('services', Services::class)->name('services');

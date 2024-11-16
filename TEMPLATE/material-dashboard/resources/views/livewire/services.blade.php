@@ -1,8 +1,8 @@
 <div>
     <div class="container-fluid py-4">
 
-        <div class="row mt-4">
-            <div class="col-12">
+        <div class="row mt-2">
+            <div class="col-lg-5 col-md-6 col-12 mb-2">
                 <div class="card">
                     <!-- Card header -->
                     <div class="card-header d-flex flex-row justify-content-between">
@@ -12,7 +12,7 @@
                         class="btn btn-sm bg-gradient-dark mt-0 mb-0 me-4" 
                         data-bs-toggle="modal" data-bs-target="#tambahKategori">
                             <i class="material-icons text-sm">add</i>
-                            &nbsp;&nbsp;Add Categories
+                            &nbsp;&nbsp;Add
                         </button>
 
                         {{-- <a class="btn btn-sm bg-gradient-dark mt-0 mb-0 me-4"
@@ -24,7 +24,7 @@
                             href="https://material-dashboard-pro-laravel-livewire.creative-tim.com/laravel-examples/new-tag"><i
                                 class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Tag</a>
                     </div> --}}
-                    <div class="d-flex flex-row justify-content-between mx-4">
+                    {{-- <div class="d-flex flex-row justify-content-between mx-4">
                         <div class="d-flex mt-3 align-items-center justify-content-center">
                             <p class="text-secondary pt-2">Show&nbsp;&nbsp;</p>
                             <select wire:model.live="perPage" class="form-control mb-2" id="entries">
@@ -38,14 +38,14 @@
                         <div class="mt-3 ">
                             <input wire:model.live="search" type="text" class="form-control" placeholder="Search...">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="table-responsive mx-3">
                         <table class="table table-flush">
                             <thead class="thead-light">
                                 <tr>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
                                         <a wire:click="sortBy('id')" class="text-xs text-secondary text-uppercase">
-                                            <span>ID</span>
+                                            <span>No</span>
 
                                             <span>
                                                 <i class="fas fa-sort-up cursor-pointer"></i>
@@ -54,18 +54,18 @@
                                     </th>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
                                         <a wire:click="sortBy('name')" class="text-xs text-secondary text-uppercase">
-                                            <span>Name</span>
+                                            <span>Category Name</span>
 
                                             <span>
                                                 <i class="fas fa-sort cursor-pointer"></i>
                                             </span>
                                         </a>
                                     </th>
-                                    <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
+                                    {{-- <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
                                         <a class="text-xs text-secondary text-uppercase">
                                             <span>Services Name</span>
                                         </a>
-                                    </th>
+                                    </th> --}}
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
                                         <span class="text-xs text-secondary text-uppercase">Actions</span>
                                     </th>
@@ -80,7 +80,7 @@
                                     <td class="text-sm font-weight-normal align-middle">
                                             Pakaian
                                     </td>
-                                    <td class="text-sm font-weight-normal align-middle border-bottom">
+                                    {{-- <td class="text-sm font-weight-normal align-middle border-bottom">
                                         <ul class="p-1">
                                             <li class="pb-1">
                                                 <span class="text-bold">Cuci Kering</span> &nbsp;
@@ -91,16 +91,20 @@
                                                 <span class="badge badge-sm bg-gradient-success">@7000/kg</span>
                                             </li>
                                         </ul>
-                                    </td>
+                                    </td> --}}
                                     <td class="text-sm font-weight-normal align-middle border-bottom">
                                         <div class="col">
-                                            <button type="button" class="btn btn-sm btn-warning btn-link" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-sm btn-warning p-1 px-2 text-center btn-link" data-bs-toggle="modal"
                                                 data-bs-target="#editKategori">
-                                                EDIT
+                                                <i style="font-size: 15px" class="fa fa-pen-to-square" aria-hidden="true"></i>
+                                            </button>
+                                            
+                                            <button type="button" class="btn btn-sm btn-danger px-2 p-1 text-center btn-link">
+                                                <i style="font-size: 15px" class="fa fa-trash" aria-hidden="true"></i>
                                             </button>
 
-                                            <button type="button" class="btn btn-sm btn-danger btn-link">
-                                                DELETE
+                                            <button type="button" class="btn btn-sm btn-dark px-2 p-1 text-center btn-link">
+                                                <i style="font-size: 15px" class="fa fa-plus" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         
@@ -114,6 +118,134 @@
                         <div>
                         </div>
 
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-7 col-md-6 col-12">
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header d-flex flex-row justify-content-between">
+                        <h5 class="mb-0">Services</h5>
+            
+                        {{-- <button type="button" class="btn btn-sm bg-gradient-dark mt-0 mb-0 me-4" data-bs-toggle="modal"
+                            data-bs-target="#tambahKategori">
+                            <i class="material-icons text-sm">add</i>
+                            &nbsp;&nbsp;Add Categories
+                        </button> --}}
+            
+                        {{-- <a class="btn btn-sm bg-gradient-dark mt-0 mb-0 me-4"
+                            href="https://material-dashboard-pro-laravel-livewire.creative-tim.com/laravel-examples/new-tag"><i
+                                class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Categories</a> --}}
+                    </div>
+                    {{-- <div class="col-12 text-end">
+                        <a class="btn btn-sm bg-gradient-dark mt-0 mb-0 me-4"
+                            href="https://material-dashboard-pro-laravel-livewire.creative-tim.com/laravel-examples/new-tag"><i
+                                class="material-icons text-sm">add</i>&nbsp;&nbsp;Add Tag</a>
+                    </div> --}}
+                    {{-- <div class="d-flex flex-row justify-content-between mx-4">
+                        <div class="d-flex mt-3 align-items-center justify-content-center">
+                            <p class="text-secondary pt-2">Show&nbsp;&nbsp;</p>
+                            <select wire:model.live="perPage" class="form-control mb-2" id="entries">
+                                <option value="5">-- 5 --</option>
+                                <option selected value="10">-- 10 --</option>
+                                <option value="15">-- 15 --</option>
+                                <option value="20">-- 20 --</option>
+                            </select>
+                            <p class="text-secondary pt-2">&nbsp;&nbsp;entries</p>
+                        </div>
+                        <div class="mt-3 ">
+                            <input wire:model.live="search" type="text" class="form-control" placeholder="Search...">
+                        </div>
+                    </div> --}}
+                    <div class="table-responsive mx-3">
+                        <table class="table table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
+                                        <a wire:click="sortBy('id')" class="text-xs text-secondary text-uppercase">
+                                            <span>No</span>
+            
+                                            <span>
+                                                <i class="fas fa-sort-up cursor-pointer"></i>
+                                            </span>
+                                        </a>
+                                    </th>
+                                    <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
+                                        <a wire:click="sortBy('name')" class="text-xs text-secondary text-uppercase">
+                                            <span>Category</span>
+            
+                                            <span>
+                                                <i class="fas fa-sort cursor-pointer"></i>
+                                            </span>
+                                        </a>
+                                    </th>
+                                    <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
+                                        <a wire:click="sortBy('name')" class="text-xs text-secondary text-uppercase">
+                                            <span>Service Name</span>
+                                    
+                                            <span>
+                                                <i class="fas fa-sort cursor-pointer"></i>
+                                            </span>
+                                        </a>
+                                    </th>
+                                    <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
+                                        <a wire:click="sortBy('name')" class="text-xs text-secondary text-uppercase">
+                                            <span>Price</span>
+                                    
+                                            <span>
+                                                <i class="fas fa-sort cursor-pointer"></i>
+                                            </span>
+                                        </a>
+                                    </th>
+                                    {{-- <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
+                                        <a class="text-xs text-secondary text-uppercase">
+                                            <span>Services Name</span>
+                                        </a>
+                                    </th> --}}
+                                    <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
+                                        <span class="text-xs text-secondary text-uppercase">Actions</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            
+                                <tr>
+                                    <td class="text-sm font-weight-normal align-middle border-bottom">
+                                        1
+                                    </td>
+                                    <td class="text-sm font-weight-normal align-middle">
+                                        Pakaian
+                                    </td>
+                                    <td class="text-sm font-weight-normal align-middle border-bottom">
+                                        <span class="text-bold">Cuci Kering</span> &nbsp;
+                                    </td>
+                                    <td class="text-sm font-weight-normal align-middle border-bottom">
+                                        <span class="badge badge-sm bg-gradient-success">@6000/kg</span>
+                                    </td>
+                                    <td class="text-sm font-weight-normal align-middle border-bottom">
+                                        <div class="col">
+                                            <button type="button" class="btn btn-sm btn-warning p-1 px-2 text-center btn-link"
+                                                data-bs-toggle="modal" data-bs-target="#editKategori">
+                                                <i style="font-size: 15px" class="fa fa-pen-to-square" aria-hidden="true"></i>
+                                            </button>
+            
+                                            <button type="button" class="btn btn-sm btn-danger px-2 p-1 text-center btn-link">
+                                                <i style="font-size: 15px" class="fa fa-trash" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+            
+                                    </td>
+                                </tr>
+            
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="datatable-bottom">
+                        <div>
+                        </div>
+            
                     </div>
                 </div>
             </div>

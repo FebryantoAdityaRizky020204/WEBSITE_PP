@@ -99,14 +99,6 @@
                     <span class="nav-link-text ms-1">User Profile</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link bg-gradient-primary text-white " href="{{ route('static-sign-up') }}">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">assignment</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Sign Up</span>
-                </a>
-            </li>
         </ul>
     </div>
 </aside>

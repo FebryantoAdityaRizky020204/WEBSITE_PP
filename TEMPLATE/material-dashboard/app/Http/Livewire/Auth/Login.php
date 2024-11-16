@@ -19,6 +19,9 @@ class Login extends Component
 
     public function render()
     {
+        if(auth()->check()) {
+            return redirect(route('dashboard'));
+        }
         return view('livewire.auth.login');
     }
 
@@ -39,7 +42,7 @@ class Login extends Component
 
         session()->regenerate();
 
-        return redirect('/admin/dashboard');
+        return redirect(route('dashboard'));
 
     }
 }
