@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class Guest extends Component
+class GuestLivewire extends Component
 {
     public function render()
     {

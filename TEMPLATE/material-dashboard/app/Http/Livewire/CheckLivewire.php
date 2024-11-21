@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class VirtualReality extends Component
+class CheckLivewire extends Component
 {
     public function render()
     {
-        return view('livewire.virtual-reality');
+        return view('livewire.guest.check');
     }
 }

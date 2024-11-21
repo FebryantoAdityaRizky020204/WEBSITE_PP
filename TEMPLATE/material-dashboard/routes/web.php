@@ -1,24 +1,26 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Auth\ForgotPassword;
-use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\ResetPassword;
 use App\Http\Livewire\Billing;
-use App\Http\Livewire\Transactions;
-use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserManagement;
 use App\Http\Livewire\ExampleLaravel\UserProfile;
-use App\Http\Livewire\Finance;
 use App\Http\Livewire\Notifications;
 use App\Http\Livewire\Profile;
-use App\Http\Livewire\Services;
 use App\Http\Livewire\StaticSignIn;
 use App\Http\Livewire\StaticSignUp;
 use App\Http\Livewire\Tables;
-use App\Http\Livewire\Guest;
-use App\Http\Livewire\Check;
+
+use App\Http\Livewire\GuestLivewire;
+use App\Http\Livewire\CheckLivewire;
+
+use App\Http\Livewire\Auth\LoginLivewire;
+use App\Http\Livewire\ServicesLivewire;
+use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Transactions;
+use App\Http\Livewire\Finance;
 use GuzzleHttp\Middleware;
 
 /*
@@ -51,13 +53,13 @@ Route::get('/', function(){
 
 Route::group(['middleware' => 'guest'], function () {
     Route::prefix('user')->group(function () {
-        Route::get('/', Guest::class)->name('user-home');
-        Route::get('/home', Guest::class)->name('user-home');
-        Route::get('/check', Check::class)->name('user-check');
+        Route::get('/', GuestLivewire::class)->name('user-home');
+        Route::get('/home', GuestLivewire::class)->name('user-home');
+        Route::get('/check', CheckLivewire::class)->name('user-check');
     });
 });
 
-Route::get('admin/sign-in', Login::class)->middleware('guest')->name('login');
+Route::get('admin/sign-in', LoginLivewire::class)->middleware('guest')->name('login');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::prefix('admin')->group(function () {
@@ -72,7 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', Dashboard::class)->name('dashboard');
         Route::get('dashboard', Dashboard::class)->name('dashboard');
         Route::get('transactions', Transactions::class)->name('transactions');
-        Route::get('services', Services::class)->name('services');
+        Route::get('services', ServicesLivewire::class)->name('services');
         Route::get('finance', Finance::class)->name('finance');
     });
 });

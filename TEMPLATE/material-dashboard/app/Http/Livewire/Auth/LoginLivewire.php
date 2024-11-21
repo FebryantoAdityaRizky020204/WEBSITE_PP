@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
-class Login extends Component
+class LoginLivewire extends Component
 {
 
     public $email='';
@@ -39,8 +39,9 @@ class Login extends Component
                 'email' => 'Your provided credentials could not be verified.'
             ]);
         }
-
+        
         session()->regenerate();
+
 
         return redirect(route('dashboard'));
 

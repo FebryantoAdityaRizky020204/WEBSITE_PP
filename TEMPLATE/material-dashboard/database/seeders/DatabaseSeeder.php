@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Pengelola;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,8 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create([
-            'name' => 'Admin',
+        Pengelola::factory()->create([
+            'nama_pengelola' => 'Admin',
             'email' => 'admin@material.com',
             'password' => ('secret')
         ]);
