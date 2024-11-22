@@ -16,5 +16,6 @@ class LayananLaundry extends Model
         'id_jenis_laundry',
         'nama_layanan',
         'harga_layanan',
+        'satuan_barang'
     ];
 }

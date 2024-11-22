@@ -17,7 +17,7 @@ use App\Http\Livewire\GuestLivewire;
 use App\Http\Livewire\CheckLivewire;
 
 use App\Http\Livewire\Auth\LoginLivewire;
-use App\Http\Livewire\ServicesLivewire;
+use App\Http\Livewire\JenisServiceLaundryLivewire;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Transactions;
 use App\Http\Livewire\Finance;
@@ -74,7 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', Dashboard::class)->name('dashboard');
         Route::get('dashboard', Dashboard::class)->name('dashboard');
         Route::get('transactions', Transactions::class)->name('transactions');
-        Route::get('services', ServicesLivewire::class)->name('services');
+        Route::get('services', JenisServiceLaundryLivewire::class)->name('services');
         Route::get('finance', Finance::class)->name('finance');
     });
 });

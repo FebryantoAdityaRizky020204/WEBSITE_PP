@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('id_jenis_laundry');
             $table->string('nama_layanan');
             $table->integer('harga_layanan');
+            $table->string('satuan_barang');
             $table->timestamps();
         });
     }
