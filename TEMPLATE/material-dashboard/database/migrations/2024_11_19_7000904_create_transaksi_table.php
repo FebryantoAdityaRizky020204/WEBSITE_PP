@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id('id');
+            $table->string('id_transaksi')->nullable();
             $table->foreignId('id_pelanggan')->constrained()->references('id')->on('pelanggan');
-            $table->foreignId('id_layanan_laundry')->constrained()->references('id')->on('layanan_laundry');
             $table->foreignId('id_pemasukan')->constrained()->references('id')->on('pemasukan');
             $table->string('status_laundry');
             $table->timestamps();

@@ -105,6 +105,10 @@
                     <!-- Card header -->
                     <div class="card-header d-flex flex-row justify-content-between">
                         <h5 class="mb-0">Layanan Laundry</h5>
+
+                        <a class="btn btn-sm bg-gradient-dark mt-0 mb-0 me-4" href="{{ route('admin-check') }}">
+                            &nbsp;&nbsp;CHECK
+                        </a>
                     </div>
                     <div class="table-responsive mx-3">
                         <table class="table table-flush">
@@ -162,13 +166,7 @@
                                                 {{ $noLL++ }}
                                             </td>
                                             <td class="text-sm font-weight-normal align-middle">
-                                                @php
-                                                    $jenisL = App\Models\JenisLaundry::where(
-                                                        'id',
-                                                        $layanan->id_jenis_laundry,
-                                                    )->first();
-                                                @endphp
-                                                {{ $jenisL->jenis_laundry }}
+                                                 {{ $layanan->jenisLaundry->jenis_laundry }}
                                             </td>
                                             <td class="text-sm font-weight-normal align-middle border-bottom">
                                                 <span class="text-bold text-wrap">
@@ -258,7 +256,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm my-1 btn-secondary" data-bs-dismiss="modal"
-                        data-bs-target="#tambahKategori">Cancel</button>
+                        data-bs-target="#tambahKategori" wire:click="resetInputs">Cancel</button>
                 </div>
             </div>
         </div>

@@ -18,9 +18,10 @@ use App\Http\Livewire\CheckLivewire;
 
 use App\Http\Livewire\Auth\LoginLivewire;
 use App\Http\Livewire\JenisServiceLaundryLivewire;
-use App\Http\Livewire\Dashboard;
-use App\Http\Livewire\Transactions;
-use App\Http\Livewire\Finance;
+use App\Http\Livewire\DashboardLivewire;
+use App\Http\Livewire\TransactionsLivewire;
+use App\Http\Livewire\DetailTransactionsLivewire;
+use App\Http\Livewire\FinanceLivewire;
 use GuzzleHttp\Middleware;
 
 /*
@@ -52,8 +53,8 @@ Route::get('/', function(){
 });
 
 Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', GuestLivewire::class)->name('user-home');
     Route::prefix('user')->group(function () {
-        Route::get('/', GuestLivewire::class)->name('user-home');
         Route::get('/home', GuestLivewire::class)->name('user-home');
         Route::get('/check', CheckLivewire::class)->name('user-check');
     });
@@ -67,14 +68,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('profile', Profile::class)->name('profile');
         Route::get('tables', Tables::class)->name('tables');
         Route::get('notifications', Notifications::class)->name("notifications");
-        Route::get('static-sign-in', StaticSignIn::class)->name('static-sign-in');
-        Route::get('static-sign-up', StaticSignUp::class)->name('static-sign-up');
         
         // USED
-        Route::get('/', Dashboard::class)->name('dashboard');
-        Route::get('dashboard', Dashboard::class)->name('dashboard');
-        Route::get('transactions', Transactions::class)->name('transactions');
+        Route::get('/', DashboardLivewire::class)->name('dashboard');
+        Route::get('dashboard', DashboardLivewire::class)->name('dashboard');
+        Route::get('transactions', TransactionsLivewire::class)->name('transactions');
+        Route::get('transactions/{id}', DetailTransactionsLivewire::class)->name('detail-transactions');
         Route::get('services', JenisServiceLaundryLivewire::class)->name('services');
-        Route::get('finance', Finance::class)->name('finance');
+        Route::get('finance', FinanceLivewire::class)->name('finance');
+        Route::get('/check', GuestLivewire::class)->name('admin-check');
     });
 });

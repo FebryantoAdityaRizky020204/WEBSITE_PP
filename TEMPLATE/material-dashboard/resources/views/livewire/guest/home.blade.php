@@ -24,7 +24,10 @@
             <div class="container">
                 <div class="row justify-content-center text-center">
                     <div class="col-md-3">
-                        <h1 class="text-gradient text-info"><span id="state1" countTo="0">0</span></h1>
+                        <h1 class="text-gradient text-info">
+                            <span id="state1"
+                                countTo="{{ count($LayananLaundry) }}">{{ count($LayananLaundry) }}</span>
+                        </h1>
                         <h5 class="mt-3">Services</h5>
                         <p class="text-sm font-weight-normal">
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit.
@@ -40,7 +43,7 @@
                         </p>
                     </div>
                     <div class="col-md-3">
-                        <h1 class="text-gradient text-info"><span id="state3" countTo="24">0</span>/7</h1>
+                        <h1 class="text-gradient text-info"><span id="state3" countTo="12">12</span>/7</h1>
                         <h5>Support</h5>
                         <p>Actively engage team members that finishes on time</p>
                     </div>
@@ -53,63 +56,28 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="row mt-4">
-                            <div class="col-md-6">
-                                <a href="./pages/about-us.html">
-                                    <div class="card move-on-hover">
-                                        <img class="w-100"
-                                            src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/assets/img/about-us.jpg"
-                                            alt="aboutus">
-                                    </div>
-                                    <div class="mt-2 ms-2">
-                                        <h6 class="mb-0">About Us Page</h6>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 mt-md-0 mt-5">
-                                <a href="./pages/contact-us.html">
-                                    <div class="card move-on-hover">
-                                        <img class="w-100"
-                                            src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/assets/img/contact-us.jpg"
-                                            alt="contacus">
-                                    </div>
-                                    <div class="mt-2 ms-2">
-                                        <h6 class="mb-0">Contact Us Page</h6>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 mt-md-3 mt-6">
-                                <a href="./pages/sign-in.html">
-                                    <div class="card move-on-hover">
-                                        <img class="w-100"
-                                            src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/assets/img/sign-in.jpg"
-                                            alt="signin">
-                                    </div>
-                                    <div class="mt-2 ms-2">
-                                        <h6 class="mb-0">Sign In Page</h6>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 mt-md-3 mt-6">
-                                <a href="./pages/author.html">
-                                    <div class="card move-on-hover">
-                                        <img class="w-100"
-                                            src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/assets/img/author.jpg"
-                                            alt="author">
-                                    </div>
-                                    <div class="mt-2 ms-2">
-                                        <h6 class="mb-0">Author Page</h6>
-                                    </div>
-                                </a>
-                            </div>
+                            @foreach ($JenisLaundry as $j => $jenis)
+                                <div class="col-md-6">
+                                    <h5 class="bg-dark text-light text-bold p-3">{{ $jenis->jenis_laundry }}</h5>
+                                    @foreach ($LayananLaundry as $l => $layanan)
+                                        @if ($layanan->id_jenis_laundry == $jenis->id)
+                                            <div class="row ms-2 p-1 border-start mb-2 border-secondary">
+                                                <span class="text-sm text-secondary font-weight-bold mb-0">{{ $layanan->nama_layanan }}</span>
+                                                <span class="font-weight-bold">{{ $layanan->harga_layanan }} / {{ $layanan->satuan_barang }}</span>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="col-md-3 mx-auto mt-md-0 mt-5">
                         <div class="position-sticky" style="top:100px !important">
-                            <h4 class>Presentation Pages for Company, Sign In Page, Author
-                                and Contact</h4>
-                            <h6 class="text-secondary font-weight-normal">These is just a
-                                small selection of the multiple possibitilies you have. Focus
-                                on the business, not on the design.</h6>
+                            <h4 class>Our Services</h4>
+                            <h6 class="text-secondary font-weight-normal">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem impedit
+                                cupiditate hic?
+                            </h6>
                         </div>
                     </div>
                 </div>
@@ -123,9 +91,15 @@
                         <h3 class="text-white z-index-1 position-relative">
                             Our Place
                         </h3>
-                        <p class="text-white opacity-8 mb-0">There’s nothing I really
-                            wanted to do in life that I wasn’t able to get good at. That’s
-                            my skill.</p>
+                        <p class="text-white opacity-8 mb-0">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt, sequi.
+                        </p>
+                    </div>
+                    <div class="col-12 p-2 bg-white rounded">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d266.9633774397286!2d112.9606334629023!3d-2.519611119194795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sid!2sid!4v1732244711272!5m2!1sid!2sid"
+                            width="100%" height="550" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
                 <div class="row">
