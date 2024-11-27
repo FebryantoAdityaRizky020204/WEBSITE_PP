@@ -15,8 +15,6 @@ class FinanceLivewire extends Component
         return view('livewire.finance', [
             'Pengeluaran' => Pengeluaran::all(),
             'Pemasukan' => Pemasukan::all(),
-            'total_pengeluaran' => Pengeluaran::all()->sum('harga_pembelian'),
-            'total_pemasukan' => Pemasukan::all()->sum('pemasukan'),
         ]);
     }
 
@@ -24,6 +22,7 @@ class FinanceLivewire extends Component
         $this->nama_barang = '';
         $this->harga_pembelian = '';
         $this->id_operation = '';
+        $this->resetValidation();
     }
 
     public function addPengeluaran(){

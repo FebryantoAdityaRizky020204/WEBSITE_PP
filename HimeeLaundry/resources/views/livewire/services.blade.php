@@ -105,50 +105,22 @@
                     <!-- Card header -->
                     <div class="card-header d-flex flex-row justify-content-between">
                         <h5 class="mb-0">Layanan Laundry</h5>
-
-                        <a class="btn btn-sm bg-gradient-dark mt-0 mb-0 me-4" href="{{ route('admin-check') }}">
-                            &nbsp;&nbsp;CHECK
-                        </a>
                     </div>
                     <div class="table-responsive mx-3">
                         <table class="table table-flush">
                             <thead class="thead-light">
                                 <tr>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
-                                        <a wire:click="sortBy('id')" class="text-xs text-secondary text-uppercase">
-                                            <span>No</span>
-
-                                            <span>
-                                                <i class="fas fa-sort-up cursor-pointer"></i>
-                                            </span>
-                                        </a>
+                                        <span>No</span>
                                     </th>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
-                                        <a wire:click="sortBy('name')" class="text-xs text-secondary text-uppercase">
-                                            <span>Jenis</span>
-
-                                            <span>
-                                                <i class="fas fa-sort cursor-pointer"></i>
-                                            </span>
-                                        </a>
+                                        <span>Jenis</span>
                                     </th>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
-                                        <a wire:click="sortBy('name')" class="text-xs text-secondary text-uppercase">
-                                            <span>Layanan Laundry</span>
-
-                                            <span>
-                                                <i class="fas fa-sort cursor-pointer"></i>
-                                            </span>
-                                        </a>
+                                        <span>Layanan Laundry</span>
                                     </th>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
-                                        <a wire:click="sortBy('name')" class="text-xs text-secondary text-uppercase">
-                                            <span>Harga</span>
-
-                                            <span>
-                                                <i class="fas fa-sort cursor-pointer"></i>
-                                            </span>
-                                        </a>
+                                        <span>Harga</span>
                                     </th>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
                                         <span class="text-xs text-secondary text-uppercase">Actions</span>

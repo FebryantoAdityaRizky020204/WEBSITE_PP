@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header pb-0 p-3">
                         <div class="d-flex justify-content-between">
-                            <h6 class="mb-0">Revenue</h6>
+                            {{-- <h6 class="mb-0">Keuangan</h6> --}}
                         </div>
                         <div class="d-flex align-items-center">
                             <span class="badge badge-md badge-dot me-4">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="card-body p-3">
                         <div class="chart" wire:ignore>
-                            <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+                            <canvas id="chart-line" class="chart-canvas" height="200"></canvas>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Pemasukan</p>
-                                <h4 class="mb-0">@currency($total_pemasukan)</h4>
+                                <h4>@currency($Pemasukan->sum('pemasukan'))</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -52,7 +52,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Pengeluaran</p>
-                                <h4 class="mb-0">@currency($total_pengeluaran)</h4>
+                                <h4 class="mb-0">@currency($Pengeluaran->sum('harga_pembelian'))</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -67,7 +67,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Saldo</p></p>
-                                <h4 class="mb-0">@currency($total_pemasukan - $total_pengeluaran)</h4>
+                                <h4 class="mb-0">@currency($Pemasukan->sum('pemasukan') - $Pengeluaran->sum('harga_pembelian'))</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">

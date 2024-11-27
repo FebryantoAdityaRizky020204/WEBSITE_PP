@@ -38,7 +38,10 @@
                                         <strong class="text-dark">Status Laundry:</strong>
                                         &nbsp;
                                         <span
-                                            class="badge badge-sm {{ $transaksi->status_laundry == 'Selesai' ? 'bg-gradient-success' : 'bg-gradient-warning' }}">
+                                            class="badge badge-sm 
+                                                {{ $transaksi->status_laundry == 'Sedang Diproses' ? 'bg-gradient-warning' : '' }} 
+                                                {{ $transaksi->status_laundry == 'Selesai' ? 'bg-gradient-success' : '' }} 
+                                                {{ $transaksi->status_laundry == 'Sudah Diambil' ? 'bg-gradient-dark' : '' }}">
                                             {{ $transaksi->status_laundry }}
                                         </span>
                                     </li>
@@ -308,7 +311,7 @@
                             <label for="jumlah_barang">Jumlah Barang</label>
                             <input wire:model='jumlah_barang' type="number" class="form-control border border-2 p-2"
                                 id="jumlah_barang" placeholder="Masukkan Jenis Laundry" autocomplete="off">
-                            @error('nama_barang')
+                            @error('jumlah_barang')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -418,7 +421,7 @@
                     <form wire:submit.prevent="editTransaksi" class=''>
 
                         <div class="form-group col-12">
-                            <label for="nama_pelanggan">Nama Peanggan</label>
+                            <label for="nama_pelanggan">Nama Pelanggan</label>
                             <input wire:model='nama_pelanggan' type="string" class="form-control border border-2 p-2"
                                 id="nama_pelanggan" placeholder="Masukkan Jenis Laundry" autocomplete="off">
 
@@ -454,6 +457,7 @@
                                 wire:model='status_laundry'>
                                 <option class="text-dark" value="Sedang Diproses">Sedang Diproses</option>
                                 <option class="text-dark" value="Selesai">Selesai</option>
+                                <option class="text-dark" value="Sudah Diambil">Sudah Diambil</option>
                             </select>
 
                             @error('status_laundry')
@@ -524,7 +528,7 @@
                                                     <td class="pb-0">Yth. Pelanggan</td>
                                                 </tr>
                                                 <tr class="text-sm">
-                                                    <td class="font-weight-bold">
+                                                    <td class="font-weight-bold text-capitalize">
                                                         {{ $transaksi->pelanggan->nama_pelanggan }} 
                                                         <br>TELP: {{ $transaksi->pelanggan->nomor_telepon }}
                                                     </td>
@@ -631,6 +635,7 @@
             };
 
             html2pdf().set(options).from(element).save();
+            $('#cetakTransaksi').modal('hide');
         }
     </script>
 @endpush

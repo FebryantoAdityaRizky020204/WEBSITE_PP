@@ -6,27 +6,33 @@ use Livewire\Component;
 use App\Models\Transaksi;
 
 class CheckLivewire extends Component {
-    public $id_transaksi, $nama_pelanggan, $nomor_telepon, 
-        $find_transaksi = null;
+    public $nama_pelanggan, 
+            $nomor_telepon, 
+            $find_transaksi = null;
 
     public function render() {
-        return view('livewire.guest.check', [
-            'transaksi' => Transaksi::all(),
-        ]);
+        return view('livewire.guest.check');
     }
 
     public function doFindTransaksi() {
         $this->validate([
-            'id_transaksi' => 'required',
-            'nama_pelanggan' => 'required',
-            'nomor_telepon' => 'required',
+            'nama_pelanggan' => 'required|string',
+            'nomor_telepon' => 'required|numeric',
         ]);
 
-        $this->find_transaksi = Transaksi::where('id_transaksi', $this->id_transaksi)
-                ->whereHas('pelanggan', function ($query) {
+        $tr = Transaksi::whereHas('pelanggan', function ($query) {
                     $query->where('nama_pelanggan', $this->nama_pelanggan)
                     ->where('nomor_telepon', $this->nomor_telepon);
-                })->first();
+                })->where('status_laundry', 'Selesai')->first();
+
+        if($tr) {
+            $this->find_transaksi = $tr;
+            $this->nomor_telepon = null;
+            $this->nama_pelanggan = null;
+        } else {
+            $this->find_transaksi = "Tidak Ditemukan";
+        }
+
     }
     
 }

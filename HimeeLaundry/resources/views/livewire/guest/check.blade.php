@@ -6,20 +6,20 @@
         </div>
     </header>
     <!-- -------- END HEADER 7 w/ text and video ------- -->
-    <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6 pb-0">
+    <div class="card card-body shadow-xl mx-2 mt-n6 pb-0 col-md-10 col-12 mx-md-auto">
         <section>
             <div class="container py-4">
                 <div class="row">
                     <div class="col-md-6 mx-auto d-flex justify-content-start flex-column" wire:ignore>
                         <h4 class="text-center mb-4">Check Your Laundry</h4>
-                        <form role="form" id="contact-form" wire:submit.prevent="doFindTransaksi" autocomplete="off">
+                        <form id="contact-form" wire:submit.prevent="doFindTransaksi">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input-group input-group-dynamic mb-4">
                                             <label class="form-label" for="nama_pelanggan">Nama</label>
                                             <input class="form-control text-capitalize" aria-label="Name..."
-                                                type="text" name="nama_pelanggan" wire:model='nama_pelanggan'>
+                                                type="text" wire:model='nama_pelanggan' autocomplete="off">
                                             @error('nama_pelanggan')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -29,21 +29,11 @@
                                         <div class="input-group input-group-dynamic mb-4">
                                             <label class="form-label" for="nomor_telepon">Nomor Telepon</label>
                                             <input type="number" class="form-control" aria-label="Nomor Telepon..."
-                                                name="nomor_telepon" wire:model='nomor_telepon'>
+                                                wire:model='nomor_telepon'>
                                             @error('nomor_telepon')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="mb-4">
-                                    <div class="input-group input-group-dynamic">
-                                        <label class="form-label text-uppercase" for="id_transaksi">ID Transaksi</label>
-                                        <input type="string" class="form-control" aria-label="Nomor Telepon..."
-                                            name="id_transaksi" wire:model='id_transaksi'>
-                                        @error('id_transaksi')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row">
@@ -60,8 +50,10 @@
                     <div class="col-md-6">
                         <div class="text-center">
                             <h2 class="text-dark text-uppercase border-2 border p-3 border-dark rounded">
-                                @if ($find_transaksi != null)
+                                @if ($find_transaksi != null && $find_transaksi != 'Tidak Ditemukan')
                                     {{ $find_transaksi->status_laundry }}
+                                @elseif ($find_transaksi == 'Tidak Ditemukan')
+                                    {{ $find_transaksi }}
                                 @else
                                     .........
                                 @endif
@@ -70,7 +62,7 @@
                         <div class="col-12">
                             <div class="page-content page-container" id="page-content">
                                 <div class="row">
-                                    @if ($find_transaksi != null)
+                                    @if ($find_transaksi != null && $find_transaksi != 'Tidak Ditemukan')
                                         <div class="col-lg-12">
                                             <div class="timeline p-2 block mb-2">
                                                 <div class="tl-item">

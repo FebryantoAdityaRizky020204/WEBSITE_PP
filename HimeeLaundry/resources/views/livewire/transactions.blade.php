@@ -15,16 +15,6 @@
                         </button>
                     </div>
                     <div class="d-flex flex-row justify-content-between mx-4">
-                        {{-- <div class="d-flex mt-3 align-items-center justify-content-center">
-                            <p class="text-secondary pt-2">Show&nbsp;&nbsp;</p>
-                            <select wire:model.live="perPage" class="form-control mb-2" id="entries">
-                                <option value="5">-- 5 --</option>
-                                <option selected value="10">-- 10 --</option>
-                                <option value="15">-- 15 --</option>
-                                <option value="20">-- 20 --</option>
-                            </select>
-                            <p class="text-secondary pt-2">&nbsp;&nbsp;entries</p>
-                        </div> --}}
                         <div class="mt-3 ">
                             <input wire:model.live="search" type="text" class="form-control text-uppercase" placeholder="Search...">
                         </div>
@@ -34,12 +24,8 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
-                                        <a wire:click="sortBy('id')" class="text-xs text-secondary text-uppercase">
-                                            <span>No</span>
-
-                                            <span>
-                                                <i class="fas fa-sort-up cursor-pointer"></i>
-                                            </span>
+                                        <a class="text-xs text-secondary text-uppercase">
+                                        <span>No</span>
                                         </a>
                                     </th>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
@@ -48,17 +34,13 @@
                                         </a>
                                     </th>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
-                                        <a wire:click="sortBy('name')" class="text-xs text-secondary text-uppercase">
-                                            <span>Name</span>
-
-                                            <span>
-                                                <i class="fas fa-sort cursor-pointer"></i>
-                                            </span>
+                                        <a class="text-xs text-secondary text-uppercase">
+                                        <span>Name</span>
                                         </a>
                                     </th>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
                                         <a class="text-xs text-secondary text-uppercase">
-                                            <span>Pembayaran</span>
+                                            <span>Pembayaran / Status</span>
                                         </a>
                                     </th>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
@@ -85,7 +67,7 @@
                                             <td class="text-sm font-weight-normal align-middle">
                                                 {{ $tr->id_transaksi }}
                                             </td>
-                                            <td class="text-sm font-weight-normal align-middle">
+                                            <td class="text-sm font-weight-normal align-middle text-capitalize">
                                                 {{ $tr->pelanggan->nama_pelanggan }}
                                             </td>
                                             <td class="text-sm font-weight-normal align-middle border-bottom">
@@ -101,12 +83,16 @@
                                             </td>
                                             <td class="text-sm font-weight-normal align-middle border-bottom">
                                                 <select 
-                                                    class="badge badge-sm border-0  {{ $tr->status_laundry == 'Sedang Diproses' ? 'bg-gradient-warning' : 'bg-gradient-success' }}" 
+                                                    class="badge badge-sm border-0  
+                                                        {{ $tr->status_laundry == 'Sedang Diproses' ? 'bg-gradient-warning' : '' }} 
+                                                        {{ $tr->status_laundry == 'Selesai' ? 'bg-gradient-success' : '' }} 
+                                                        {{ $tr->status_laundry == 'Sudah Diambil' ? 'bg-gradient-dark' : '' }}" 
                                                         name="e_status_laundry.{{ $t }}" id="e_status_laundry.{{ $t }}" 
                                                         wire:model.blur='e_status_laundry.{{ $t }}' 
                                                         wire:change='updateStatusLaundry({{ $t }}, {{ $tr->id }})'>
                                                     <option class="text-dark" value="Sedang Diproses">Sedang Diproses</option>
                                                     <option class="text-dark" value="Selesai">Selesai</option>
+                                                    <option class="text-dark" value="Sudah Diambil">Sudah Diambil</option>
                                                 </select>
                                             </td>
                                             <td class="text-sm font-weight-normal align-middle border-bottom">
@@ -178,8 +164,9 @@
                             <div class="form-group col-12 col-md-6">
                                 <label for="nama_pelanggan">Nama Pelanggan</label>
                                 <input wire:model='nama_pelanggan' type="string"
-                                    class="form-control border border-2 p-2" id="nama_pelanggan"
-                                    placeholder="Enter name">
+                                    class="form-control border border-2 p-2 text-capitalize" id="nama_pelanggan"
+                                    placeholder="Enter name" autocomplete="off">
+                                
                                 @error('nama_pelanggan')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -213,7 +200,7 @@
                                                 wire:model.live="id_layanan.{{ $i }}"
                                                 id="id_layanan{{ $i }}">
                                                 <option selected>--</option>
-                                                @foreach ($LayananLaundry as $LL => $layanan)
+                                                @foreach ($layananLaundry as $LL => $layanan)
                                                     <option value="{{ $layanan->id }}">
                                                         {{ $layanan->nama_layanan }}
                                                     </option>

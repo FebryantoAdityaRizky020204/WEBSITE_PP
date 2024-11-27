@@ -18,6 +18,7 @@ class JenisServiceLaundryLivewire extends Component
         $this->harga_layanan = '';
         $this->satuan_barang = '';
         $this->s_nama_jenis_layanan = '';
+        $this->resetValidation();
     }
     
     // ? render ui

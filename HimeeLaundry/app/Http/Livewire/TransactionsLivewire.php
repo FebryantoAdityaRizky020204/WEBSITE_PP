@@ -23,13 +23,19 @@ class TransactionsLivewire extends Component {
     public $nama_pelanggan, $nomor_telepon, $status_pembayaran, $status_laundry, $id_operation, $teks_operation;
     public $e_status_laundry = [];
     public $e_status_pembayaran = [];
+    public $search;
 
     public function render()
     {
-        return view('livewire.transactions', [
-            'Transaksi' => $this->transaksi,
-            'LayananLaundry' => $this->layananLaundry,
-        ]);
+        return view('livewire.transactions');
+    }
+
+    function updatedSearch(){
+        $this->transaksi = Transaksi::where('id_transaksi', 'like', '%' . $this->search . '%')
+            ->orWhereHas('pelanggan', function ($query) {
+                $query->where('nama_pelanggan', 'like', '%' . $this->search . '%');
+            })->with('pelanggan')
+            ->get();
     }
 
     public function mount() {
@@ -116,6 +122,10 @@ class TransactionsLivewire extends Component {
         $this->resetInputs();
         session()->flash('message', 'Transaksi Laundry Berhasil Ditambahkan');
         $this->dispatch('close-modal');
+
+        $id_tr = Crypt::encrypt($transaksi->id_transaksi);
+        return redirect()->route('detail-transactions', ['id' => $id_tr]);
+
     }
 
     public function storeTransaksiLayanan($id_transaksi){
@@ -187,7 +197,6 @@ class TransactionsLivewire extends Component {
             RincianLaundry::where('id_transaksi', $transaksi->id)->delete();
             $transaksi->delete();
             Pemasukan::where('id', $transaksi->id_pemasukan)->delete();
-            Pelanggan::where('id', $transaksi->id_pelanggan)->delete();
             
             $this->resetInputs();
             session()->flash('message', 'Transaksi Berhasil Dihapus');

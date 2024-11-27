@@ -61,8 +61,8 @@
                         </div>
                     </div>
                     <div class="card-body pb-1">
-                        <h6 class="mb-0 ">Pelanggan Mingguan</h6>
-                        <p class="text-sm ">12-10-2021 s.d 18-02-2021</p>
+                        <h6 class="mb-0 ">Transaksi Mingguan</h6>
+                        <p class="text-sm ">{{ date('Y-m-d', strtotime($startOfWeek)) }} <span class="text-bold">s.d</span> {{ date('Y-m-d', strtotime($endOfWeek)) }}</p>
                         <hr class="dark horizontal">
                     </div>
                 </div>
@@ -117,29 +117,34 @@
                 <div class="modal-body">
                     <form class=''>
                         <div class="form-group col-12">
-                            <label for="id_transaksi">ID TRANSAKSI</label>
-                            <input wire:model.live='id_transaksi' type="string" 
+                            <label for="search">ID TRANSAKSI</label>
+                            <input wire:model.live='search' type="string" 
                                 class="form-control text-uppercase border border-2 p-2"
-                                id="id_transaksi" placeholder="Masukkan ID Transaksi" 
+                                id="search" placeholder="Masukkan ID Transaksi" 
                                 autocomplete="off">
                         </div>
                     </form>
 
                     <div class="col-12 mt-3">
                         @if ($find_transaksi == null)
-                            <span class="d-block text-sm text-bold p-2 text-center">DATA TIDAK DITEMUKAN</span>
-                            @else
+                        <span class="d-block text-sm text-bold p-2 text-center">DATA TIDAK DITEMUKAN</span>
+                        @else
                             <div class="col-12">
                                 <span class="d-block text-sm text-bold p-2 text-center">DATA DITEMUKAN</span>
                                 <div class="row mt-1">
-                                    <div class="col-6 text-center mt-1">
-                                        <span class="text-bold">
+                                    <div class="col-4 text-center mt-1">
+                                        <span class="text-bold text-capitalize">
                                             {{ $find_transaksi->pelanggan->nama_pelanggan }}
                                         </span>
                                     </div>
-                                    <div class="col-6 text-center border-start border-secondary mt-1">
+                                    <div class="col-4 text-center mt-1 border-start border-secondary">
+                                        <span class="text-bold">
+                                            {{ $find_transaksi->pelanggan->nomor_telepon }}
+                                        </span>
+                                    </div>
+                                    <div class="col-4 text-center border-start border-secondary mt-1">
                                         <button type="button" class="btn btn-sm bg-gradient-info mt-0 mb-0 me-4"
-                                            wire:click='detailTransaksi'>
+                                            wire:click="detailTransaksi('{{ $find_transaksi->id_transaksi }}')"">
                                             DETAIL
                                         </button>
                                     </div>
@@ -157,7 +162,6 @@
     </div>
 </div>
 
-
 @push('js')
     <script src="{{ asset('assets') }}/js/plugins/chartjs.min.js"></script>
     <script>
@@ -165,18 +169,20 @@
 
         function renderChart(){
 
+            let jumlahPerHari = @json($jumlahPerHari);
+            console.log(jumlahPerHari)
             new Chart(ctx, {
                 type: "bar",
                 data: {
                     labels: ["M", "T", "W", "T", "F", "S", "S"],
                     datasets: [{
-                        label: "Sales",
+                        label: "Transaksi",
                         tension: 0.4,
                         borderWidth: 0,
                         borderRadius: 4,
                         borderSkipped: false,
                         backgroundColor: "rgba(255, 255, 255, .8)",
-                        data: [12, 21, 22, 2, 2, 1, 4],
+                        data: [0,1,5,0,0,0,0],
                         maxBarThickness: 6
                     }, ],
                 },

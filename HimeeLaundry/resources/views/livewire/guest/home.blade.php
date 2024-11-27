@@ -23,29 +23,25 @@
         <section class="pt-4 pb-6" id="count-stats">
             <div class="container">
                 <div class="row justify-content-center text-center">
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <h1 class="text-gradient text-info">
                             <span id="state1"
                                 countTo="{{ count($LayananLaundry) }}">{{ count($LayananLaundry) }}</span>
                         </h1>
                         <h5 class="mt-3">Services</h5>
-                        <p class="text-sm font-weight-normal">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                            Iure, error!
+                        <p class="">
+                            Dengan {{ count($LayananLaundry) }} layanan yang tersedia, yang bisa anda pilih sesuai kebutuhan anda. 
+                            dengan harga terbaik dan kualitas terjamin.
                         </p>
                     </div>
-                    <div class="col-md-3">
-                        <h1 class="text-gradient text-info"> <span id="state2" countTo="0">0</span></h1>
-                        <h5 class="mt-3">Transactions</h5>
-                        <p class="text-sm font-weight-normal">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            Pariatur, aliquid.
-                        </p>
-                    </div>
-                    <div class="col-md-3">
-                        <h1 class="text-gradient text-info"><span id="state3" countTo="12">12</span>/7</h1>
+                    
+                    <div class="col-md-6">
+                        <h1 class="text-gradient text-info"><span id="state3" countTo="12">12</span>/6</h1>
                         <h5>Support</h5>
-                        <p>Actively engage team members that finishes on time</p>
+                        <p>
+                            kami siap memproses laundry anda 12 jam setiap senin hingga sabtu, 
+                            dapatkan layanan yang terbaik dalam waktu singkat.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -75,8 +71,7 @@
                         <div class="position-sticky" style="top:100px !important">
                             <h4 class>Our Services</h4>
                             <h6 class="text-secondary font-weight-normal">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem impedit
-                                cupiditate hic?
+                                temukan layanan laundry yang anda butuhkan, kami menyediakan layanan laundry dengan harga terbaik.
                             </h6>
                         </div>
                     </div>
@@ -92,7 +87,7 @@
                             Our Place
                         </h3>
                         <p class="text-white opacity-8 mb-0">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt, sequi.
+                            Datang dan buktikan ke alamat kami di Jl. Hasan Mansur No.2024.
                         </p>
                     </div>
                     <div class="col-12 p-2 bg-white rounded">
@@ -104,9 +99,6 @@
                 </div>
                 <div class="row">
 
-                </div>
-                <div class="row mt-4">
-                    <map name="imageMap"></map>
                 </div>
             </div>
         </section>
