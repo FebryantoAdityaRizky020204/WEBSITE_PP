@@ -81,6 +81,11 @@ class DetailTransactionsLivewire extends Component {
     }
 
     public function editRincianLaundry() {
+        $this->validate([
+            'nama_barang' => 'required|string',
+            'jumlah_barang' => 'required|numeric'
+        ]);
+        
         $rincian = RincianLaundry::where('id', $this->id_operation)->first();
 
         $rincian->update([

@@ -24,6 +24,8 @@ class TransactionsLivewire extends Component {
     public $e_status_laundry = [];
     public $e_status_pembayaran = [];
     public $search;
+    public $autoName = null;
+    public $inputFocus = false;
 
     public function render()
     {
@@ -36,6 +38,14 @@ class TransactionsLivewire extends Component {
                 $query->where('nama_pelanggan', 'like', '%' . $this->search . '%');
             })->with('pelanggan')
             ->get();
+    }
+
+    function updatedNamaPelanggan() {
+        if($this->nama_pelanggan != null){
+            $this->autoName = Pelanggan::where('nama_pelanggan', 'like', '%' . $this->nama_pelanggan . '%')->get();
+        } else {
+            $this->autoName = null;
+        }
     }
 
     public function mount() {
@@ -54,7 +64,11 @@ class TransactionsLivewire extends Component {
     }
 
     public function resetInputs() {
-        $this->transaksi = Transaksi::all();
+        $this->transaksi = Transaksi::where('id_transaksi', 'like', '%' . $this->search . '%')
+            ->orWhereHas('pelanggan', function ($query) {
+                $query->where('nama_pelanggan', 'like', '%' . $this->search . '%');
+            })->with('pelanggan')
+            ->get();
         $this->layananLaundry = LayananLaundry::all();
         $this->id_layanan = [];
         $this->nilai_barang = [];
@@ -68,6 +82,7 @@ class TransactionsLivewire extends Component {
             $this->e_status_laundry[$i] = $this->transaksi[$i]->status_laundry;
             $this->e_status_pembayaran[$i] = $this->transaksi[$i]->pemasukan->status_pembayaran;
         }
+        $this->inputFocus = false;
     }
 
     function addService() {
@@ -122,7 +137,6 @@ class TransactionsLivewire extends Component {
         $this->resetInputs();
         session()->flash('message', 'Transaksi Laundry Berhasil Ditambahkan');
         $this->dispatch('close-modal');
-
         $id_tr = Crypt::encrypt($transaksi->id_transaksi);
         return redirect()->route('detail-transactions', ['id' => $id_tr]);
 
@@ -211,5 +225,21 @@ class TransactionsLivewire extends Component {
     public function detailTransaksi($id){
         $id_tr = Crypt::encrypt($id);
         return redirect()->route('detail-transactions', ['id' => $id_tr]);
+    }
+
+    public function setPelanggan($id) {
+        $pelanggan = Pelanggan::where('id', $id)->first();
+        $this->nama_pelanggan = $pelanggan->nama_pelanggan;
+        $this->nomor_telepon = $pelanggan->nomor_telepon;
+    }
+
+    public function handleInputFocus() {
+        $this->inputFocus = true;
+    }
+
+    public function handleInputBlur() {
+        // Tambahkan jeda untuk memungkinkan `wire:click` selesai sebelum dropdown menghilang
+        usleep(200000); // 200ms
+        $this->inputFocus = false;
     }
 }

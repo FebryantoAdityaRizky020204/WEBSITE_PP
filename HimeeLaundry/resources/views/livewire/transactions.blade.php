@@ -16,7 +16,7 @@
                     </div>
                     <div class="d-flex flex-row justify-content-between mx-4">
                         <div class="mt-3 ">
-                            <input wire:model.live="search" type="text" class="form-control text-uppercase" placeholder="Search...">
+                            <input wire:model.live.debounce.500ms="search" type="text" class="form-control text-uppercase" placeholder="Search...">
                         </div>
                     </div>
                     <div class="table-responsive mx-3">
@@ -60,7 +60,7 @@
                                         $noT = 0;
                                     @endphp
                                     @foreach ($transaksi as $t => $tr)
-                                        <tr>
+                                        <tr wire:key="{{ $tr->id }}">
                                             <td class="text-sm font-weight-normal align-middle border-bottom">
                                                 {{ ++$noT }}
                                             </td>
@@ -161,12 +161,24 @@
                         </div>
 
                         <div class="row">
-                            <div class="form-group col-12 col-md-6">
+                            <div class="form-group col-12 col-md-6 position-relative">
                                 <label for="nama_pelanggan">Nama Pelanggan</label>
-                                <input wire:model='nama_pelanggan' type="string"
+                                <input wire:model.live='nama_pelanggan' type="string"
                                     class="form-control border border-2 p-2 text-capitalize" id="nama_pelanggan"
-                                    placeholder="Enter name" autocomplete="off">
-                                
+                                    placeholder="Enter name" autocomplete="off"
+                                    wire:focus="handleInputFocus"
+                                    wire:blur="handleInputBlur">
+                                @if ($autoName != null && $inputFocus == true)    
+                                <div class="position-absolute start-5 z-index-2">
+                                    <ul class="list-group">
+                                        @foreach ($autoName as $pelanggan)
+                                            <li class="list-group-item" wire:click='setPelanggan({{ $pelanggan->id }})' tabindex="0">
+                                                <button class="btn m-0" type="button">{{ $pelanggan->nama_pelanggan }} - {{ $pelanggan->nomor_telepon }}</button>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
                                 @error('nama_pelanggan')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -198,7 +210,7 @@
                                             <select class="form-select border border-2 p-2"
                                                 aria-label="Default select example"
                                                 wire:model.live="id_layanan.{{ $i }}"
-                                                id="id_layanan{{ $i }}">
+                                                id="id_layanan.*">
                                                 <option selected>--</option>
                                                 @foreach ($layananLaundry as $LL => $layanan)
                                                     <option value="{{ $layanan->id }}">
@@ -206,7 +218,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('id_layanan.{{ $i }}')
+                                            @error('id_layanan.*')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -216,7 +228,7 @@
                                                 class="form-control border border-2 p-2"
                                                 id="nilai_arang{{ $i }}"
                                                 placeholder="Jumlah/Berat Laundry" min="0">
-                                            @error('nilai_barang.{{ $i }}')
+                                            @error('nilai_barang.*')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>

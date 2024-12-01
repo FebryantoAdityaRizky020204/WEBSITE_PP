@@ -179,6 +179,7 @@
             }
         </style>
         @livewireStyles
+        @livewireScripts
     </head>
 
     <body class="about-us bg-gray-200">

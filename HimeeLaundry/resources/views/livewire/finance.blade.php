@@ -394,16 +394,35 @@
 @push('js')
     <script src="{{ asset('assets') }}/js/plugins/chartjs.min.js"></script>
     <script>
-        var ctx1 = document.getElementById("chart-line").getContext("2d");
-
-        function renderChart() {
-
-
-            new Chart(ctx1, {
+        let chart = null;
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialFinanceSummary = @json($finance_summary);
+            renderChart(initialFinanceSummary);
+        });
+    
+        window.addEventListener('renderChart', event => {
+            const financeSummary = @json($finance_summary);
+            renderChart(financeSummary);
+        });
+    
+        function renderChart(finance_summary) {
+            if (chart) {
+                chart.destroy();
+            }
+    
+            const pengeluaran = Object.values(finance_summary).map(item => item.pengeluaran);
+            const pemasukan = Object.values(finance_summary).map(item => item.pemasukan);
+    
+            const ctx1 = document.getElementById("chart-line").getContext("2d");
+            
+            // Initialize or update the chart object
+            chart = new Chart(ctx1, {
                 type: "line",
                 data: {
-                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                    datasets: [{
+                    labels: ["Sn", "Sl", "Rb", "Km", "Jm", "Sb", "Mg"],
+                    datasets: [
+                        {
                             label: "Pemasukan",
                             tension: 0,
                             pointRadius: 5,
@@ -413,8 +432,8 @@
                             borderWidth: 4,
                             backgroundColor: "transparent",
                             fill: true,
-                            data: [12, 20, 50, 50, 100, 200, 190, 400, 350, 500, 450, 700],
-                            maxBarThickness: 6
+                            data: pemasukan,
+                            maxBarThickness: 6,
                         },
                         {
                             label: "Pengeluaran",
@@ -427,9 +446,9 @@
                             borderWidth: 4,
                             backgroundColor: "transparent",
                             fill: true,
-                            data: [21, 89, 23, 10, 30, 40, 120, 150, 220, 280, 250, 280],
-                            maxBarThickness: 6
-                        }
+                            data: pengeluaran,
+                            maxBarThickness: 6,
+                        },
                     ],
                 },
                 options: {
@@ -438,11 +457,11 @@
                     plugins: {
                         legend: {
                             display: false,
-                        }
+                        },
                     },
                     interaction: {
                         intersect: false,
-                        mode: 'index',
+                        mode: "index",
                     },
                     scales: {
                         y: {
@@ -452,20 +471,20 @@
                                 drawOnChartArea: true,
                                 drawTicks: false,
                                 borderDash: [5, 5],
-                                color: '#c1c4ce5c'
+                                color: "#c1c4ce5c",
                             },
                             ticks: {
                                 display: true,
                                 padding: 10,
-                                color: '#9ca2b7',
+                                color: "#9ca2b7",
                                 font: {
                                     size: 14,
                                     weight: 300,
                                     family: "Roboto",
-                                    style: 'normal',
-                                    lineHeight: 2
+                                    style: "normal",
+                                    lineHeight: 2,
                                 },
-                            }
+                            },
                         },
                         x: {
                             grid: {
@@ -474,26 +493,24 @@
                                 drawOnChartArea: true,
                                 drawTicks: true,
                                 borderDash: [5, 5],
-                                color: '#c1c4ce5c'
+                                color: "#c1c4ce5c",
                             },
                             ticks: {
                                 display: true,
-                                color: '#9ca2b7',
+                                color: "#9ca2b7",
                                 padding: 10,
                                 font: {
                                     size: 14,
                                     weight: 300,
                                     family: "Roboto",
-                                    style: 'normal',
-                                    lineHeight: 2
+                                    style: "normal",
+                                    lineHeight: 2,
                                 },
-                            }
+                            },
                         },
                     },
                 },
             });
         }
-
-        renderChart();
     </script>
 @endpush

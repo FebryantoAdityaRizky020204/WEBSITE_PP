@@ -18,8 +18,8 @@ class DashboardLivewire extends Component
     $search = '',
     $find_transaksi = null,
     $jumlahPerHari = [],
-    $startOfWeek = null,
-    $endOfWeek = null,
+    $startOfWeek = '',
+    $endOfWeek = '',
     $transaksiPerHari = [];
 
     public function render() {
@@ -31,9 +31,9 @@ class DashboardLivewire extends Component
         $this->pelanggan = Pelanggan::all()->count();
         $this->pemasukan = Pemasukan::all()->sum('pemasukan');
         $this->pengeluaran = Pengeluaran::all()->sum('harga_pembelian');
-        $this->startOfWeek = Carbon::now()->startOfWeek();
-        $this->endOfWeek = Carbon::now()->endOfWeek();
-
+        $this->startOfWeek = Carbon::now()->startOfWeek()->format('Y-m-d');
+        $this->endOfWeek = Carbon::now()->endOfWeek()->format('Y-m-d');
+        $this->getWeeklyTransactions();
     }
 
     public function updatedSearch() {
@@ -72,10 +72,12 @@ class DashboardLivewire extends Component
 
     public function getWeeklyTransactions() {
         $dates = collect();
+        
         foreach (range(0, 6) as $i) {
             $date = Carbon::now()->startOfWeek()->addDays($i)->format('Y-m-d');
             $dates->put($date, 0);
         }
+
         $transactions = Transaksi::whereBetween('created_at', [
             Carbon::now()->startOfWeek()->toDateTimeString(),
             Carbon::now()->endOfWeek()->toDateTimeString()
@@ -83,16 +85,13 @@ class DashboardLivewire extends Component
         ->select(DB::raw('DATE(created_at) as tanggal'), DB::raw('COUNT(*) as jumlah'))
         ->groupBy(DB::raw('DATE(created_at)'))
         ->orderBy(DB::raw('DATE(created_at)'))
-        ->get()
-        ->pluck('jumlah');
-        
-        $this->transaksiPerHari = $dates->merge($transactions);
+        ->get();
+
+        foreach ($transactions as $transaction) {
+            $dates[$transaction->tanggal] = $transaction->jumlah;
+        }
+
+        $this->transaksiPerHari = $dates->toArray();
     }
-
-
-
-
-
-
 
 }

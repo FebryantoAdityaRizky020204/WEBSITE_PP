@@ -17,7 +17,7 @@ class CheckLivewire extends Component {
     public function doFindTransaksi() {
         $this->validate([
             'nama_pelanggan' => 'required|string',
-            'nomor_telepon' => 'required|numeric',
+            'nomor_telepon' => 'required|numeric|min:11',
         ]);
 
         $tr = Transaksi::whereHas('pelanggan', function ($query) {

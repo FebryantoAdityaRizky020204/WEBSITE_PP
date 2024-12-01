@@ -14,9 +14,9 @@
                             <div class="card-body p-3 ps-4">
                                 <hr class="horizontal my-1">
                                 <ul class="list-group">
-                                    <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <li class="list-group-item border-0 ps-0 pt-0 text-sm text-capitalize">
                                         <strong class="text-dark">Nama Pelanggan:</strong>
-                                        &nbsp; {{ $transaksi->pelanggan->nama_pelanggan }}
+                                        &nbsp; <span></span>{{ $transaksi->pelanggan->nama_pelanggan }}
                                     </li>
                                     <li class="list-group-item border-0 ps-0 text-sm">
                                         <strong class="text-dark">Nomor Telepon:</strong>

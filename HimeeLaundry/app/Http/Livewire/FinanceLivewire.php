@@ -3,12 +3,15 @@
 namespace App\Http\Livewire;
 use App\Models\Pengeluaran;
 use App\Models\Pemasukan;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 use Livewire\Component;
 
 class FinanceLivewire extends Component
 {
-    public $nama_barang, $harga_pembelian, $id_operation;
+    public $nama_barang, $harga_pembelian, $id_operation, 
+        $finance_summary = '';
     
     public function render()
     {
@@ -22,7 +25,12 @@ class FinanceLivewire extends Component
         $this->nama_barang = '';
         $this->harga_pembelian = '';
         $this->id_operation = '';
+        $this->getWeeklyFinanceSummary();
         $this->resetValidation();
+    }
+
+    public function mount(){
+        $this->getWeeklyFinanceSummary();
     }
 
     public function addPengeluaran(){
@@ -39,6 +47,7 @@ class FinanceLivewire extends Component
         $this->resetInputs();
         session()->flash('message', 'Pengeluaran Berhasil Ditambahkan');
         $this->dispatch('close-modal');
+        $this->dispatch('renderChart', ['finance_summary' => $this->finance_summary]);
     }
 
 
@@ -64,6 +73,7 @@ class FinanceLivewire extends Component
         $this->resetInputs();
         session()->flash('message', 'Pengeluaran Berhasil Diubah');
         $this->dispatch('close-modal');
+        $this->dispatch('renderChart', ['finance_summary' => $this->finance_summary]);
     }
 
     public function showDeletePengeluaran($id){
@@ -80,8 +90,45 @@ class FinanceLivewire extends Component
         $this->resetInputs();
         session()->flash('message', 'Pengeluaran Berhasil Dihapus');
         $this->dispatch('close-modal');
+        $this->dispatch('renderChart', ['finance_summary' => $this->finance_summary]);
     }
 
+    public function getWeeklyFinanceSummary() {
+        $dates = [];
+        foreach (range(0, 6) as $i) {
+            $date = Carbon::now()->startOfWeek()->addDays($i)->format('Y-m-d');
+            $dates[$date] = ['pemasukan' => 0, 'pengeluaran' => 0];
+        }
 
+        $pemasukan = Pemasukan::whereBetween('created_at', [
+            Carbon::now()->startOfWeek()->toDateTimeString(),
+            Carbon::now()->endOfWeek()->toDateTimeString()
+        ])
+        ->select(DB::raw('DATE(created_at) as tanggal'), DB::raw('SUM(pemasukan) as total_pemasukan'))
+        ->groupBy(DB::raw('DATE(created_at)'))
+        ->get();
+
+        $pengeluaran = Pengeluaran::whereBetween('created_at', [
+            Carbon::now()->startOfWeek()->toDateTimeString(),
+            Carbon::now()->endOfWeek()->toDateTimeString()
+        ])
+        ->select(DB::raw('DATE(created_at) as tanggal'), DB::raw('SUM(harga_pembelian) as total_pengeluaran'))
+        ->groupBy(DB::raw('DATE(created_at)'))
+        ->get();
+
+        foreach ($pemasukan as $item) {
+            if (isset($dates[$item->tanggal])) {
+                $dates[$item->tanggal]['pemasukan'] = $item->total_pemasukan;
+            }
+        }
+
+        foreach ($pengeluaran as $item) {
+            if (isset($dates[$item->tanggal])) {
+                $dates[$item->tanggal]['pengeluaran'] = $item->total_pengeluaran;
+            }
+        }
+
+        $this->finance_summary = $dates;
+    }
 
 }

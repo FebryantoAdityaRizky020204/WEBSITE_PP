@@ -169,12 +169,12 @@
 
         function renderChart(){
 
-            let jumlahPerHari = @json($jumlahPerHari);
-            console.log(jumlahPerHari)
+            let jumlahPerHari = @json($transaksiPerHari);
+            let transaksiArray = Object.values(jumlahPerHari);
             new Chart(ctx, {
                 type: "bar",
                 data: {
-                    labels: ["M", "T", "W", "T", "F", "S", "S"],
+                    labels: ["Sn", "Sl", "Rb", "Km", "Jm", "Sb", "Mg"],
                     datasets: [{
                         label: "Transaksi",
                         tension: 0.4,
@@ -182,7 +182,7 @@
                         borderRadius: 4,
                         borderSkipped: false,
                         backgroundColor: "rgba(255, 255, 255, .8)",
-                        data: [0,1,5,0,0,0,0],
+                        data: transaksiArray,
                         maxBarThickness: 6
                     }, ],
                 },
