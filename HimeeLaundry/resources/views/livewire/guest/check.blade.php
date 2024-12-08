@@ -5,6 +5,8 @@
             <span class="mask bg-gradient-dark opacity-6"></span>
         </div>
     </header>
+
+    @errr
     <!-- -------- END HEADER 7 w/ text and video ------- -->
     <div class="card card-body shadow-xl mx-2 mt-n6 pb-0 col-md-10 col-12 mx-md-auto">
         <section>

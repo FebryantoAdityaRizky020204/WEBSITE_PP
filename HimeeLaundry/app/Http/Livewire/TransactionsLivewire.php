@@ -153,11 +153,17 @@ class TransactionsLivewire extends Component {
     }
 
     public function storePelanggan() {
-        $pelanggan = Pelanggan::create([
-            'nama_pelanggan' => $this->nama_pelanggan,
-            'nomor_telepon' => $this->nomor_telepon,
-        ]);
-        return $pelanggan->id;
+        $cekPelanggan = Pelanggan::where('nama_pelanggan', $this->nama_pelanggan)
+            ->Where('nomor_telepon', $this->nomor_telepon)->first();
+        if($cekPelanggan) {
+            return $cekPelanggan->id;
+        } else {
+            $pelanggan = Pelanggan::create([
+                'nama_pelanggan' => $this->nama_pelanggan,
+                'nomor_telepon' => $this->nomor_telepon,
+            ]);
+            return $pelanggan->id;
+        }
     }
 
     public function storePemasukan() {

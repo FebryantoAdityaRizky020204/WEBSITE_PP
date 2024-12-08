@@ -159,7 +159,6 @@ class DetailTransactionsLivewire extends Component {
             RincianLaundry::where('id_transaksi', $transaksi->id)->delete();
             $transaksi->delete();
             Pemasukan::where('id', $transaksi->id_pemasukan)->delete();
-            Pelanggan::where('id', $transaksi->id_pelanggan)->delete();
             
             return redirect()->route('transactions');
         } else {
