@@ -5,36 +5,29 @@
             <span class="mask bg-gradient-dark opacity-6"></span>
         </div>
     </header>
-
-    @errr
     <!-- -------- END HEADER 7 w/ text and video ------- -->
-    <div class="card card-body shadow-xl mx-2 mt-n6 pb-0 col-md-10 col-12 mx-md-auto">
+    <div class="card card-body shadow-xl mx-2 mt-n6 pb-0 col-11 col-lg-8 mx-auto">
         <section>
             <div class="container py-4">
                 <div class="row">
-                    <div class="col-md-6 mx-auto d-flex justify-content-start flex-column" wire:ignore>
+                    <div class="col-md-6 mx-auto d-flex justify-content-start flex-column">
                         <h4 class="text-center mb-4">Check Your Laundry</h4>
-                        <form id="contact-form" wire:submit.prevent="doFindTransaksi">
+                        <form id="contact-form" wire:submit.prevent="doFindTransaksi" class="">
                             <div class="card-body">
-                                <div class="row">
+                                <div class="row" wire:ignore>
                                     <div class="col-md-6">
                                         <div class="input-group input-group-dynamic mb-4">
                                             <label class="form-label" for="nama_pelanggan">Nama</label>
                                             <input class="form-control text-capitalize" aria-label="Name..."
                                                 type="text" wire:model='nama_pelanggan' autocomplete="off">
-                                            @error('nama_pelanggan')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6 ps-2">
+                                    <div class="col-md-6">
                                         <div class="input-group input-group-dynamic mb-4">
                                             <label class="form-label" for="nomor_telepon">Nomor Telepon</label>
-                                            <input type="number" class="form-control" aria-label="Nomor Telepon..."
-                                                wire:model='nomor_telepon'>
-                                            @error('nomor_telepon')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+                                            <input class="form-control w-100 text-capitalize" aria-label="Nomor Telepon..."
+                                                type="number" wire:model='nomor_telepon' autocomplete="off" >
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -63,6 +56,12 @@
                         </div>
                         <div class="col-12">
                             <div class="page-content page-container" id="page-content">
+                                @error('nomor_telepon')
+                                    <span class="text-danger">{{ $message }}</span> <br />
+                                @enderror
+                                @error('nama_pelanggan')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <div class="row">
                                     @if ($find_transaksi != null && $find_transaksi != 'Tidak Ditemukan')
                                         <div class="col-lg-12">

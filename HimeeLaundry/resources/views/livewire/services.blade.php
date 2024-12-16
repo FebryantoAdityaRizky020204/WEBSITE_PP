@@ -120,6 +120,9 @@
                                         <span>Layanan Laundry</span>
                                     </th>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
+                                        <span>Estimasi</span>
+                                    </th>
+                                    <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
                                         <span>Harga</span>
                                     </th>
                                     <th style="padding: 0.75rem 0.5rem" class="border-bottom border-dark">
@@ -145,6 +148,9 @@
                                                     {{ $layanan->nama_layanan }}
                                                 </span> &nbsp;
                                             </td>
+                                            <td class="text-sm font-weight-normal align-middle">
+                                                {{ $layanan->estimasi_pengerjaan }} {{ $layanan->satuan_waktu }}
+                                           </td>
                                             <td class="text-sm font-weight-normal align-middle border-bottom">
                                                 {{ $layanan->harga_layanan }}/{{ $layanan->satuan_barang }}
                                             </td>
@@ -332,8 +338,8 @@
                             @enderror
                         </div>
 
-                        <div class="form-group col-12">
-                            <label for="nama_service">Nama Layanan</label>
+                        <div class="form-group col-12 mt-1">
+                            <label for="nama_layanan">Nama Layanan</label>
                             <input wire:model='nama_layanan' type="string" class="form-control border border-2 p-2"
                                 id="nama_service" placeholder="Enter name" autocomplete="off">
                             @error('nama_layanan')
@@ -341,7 +347,7 @@
                             @enderror
                         </div>
 
-                        <div class="row col-12">
+                        <div class="row col-12 mt-1">
                             <div class="form-group col-9">
                                 <label for="harga_service">Harga Layanan</label>
                                 <input wire:model='harga_layanan' type="number"
@@ -361,6 +367,28 @@
                                     <option value="Pasang">Pasang</option>
                                 </select>
                                 @error('satuan_barang')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row col-12 mt-1">
+                            <div class="form-group col-9">
+                                <label for="estimasi_pengerjaan">Estimasi Pengerjaan (jam)</label>
+                                <input wire:model='estimasi_pengerjaan' type="number" class="form-control border border-2 p-2"
+                                    id="estimasi_pengerjaan" placeholder="Estimasi Pengerjaan" autocomplete="off">
+                                @error('estimasi_pengerjaan')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group col-3">
+                                <label for="exampleInputname">Waktu</label>
+                                <select class="form-select border border-2 p-2" aria-label="Default select example"
+                                    wire:model='satuan_waktu'>
+                                    <option>PILIH</option>
+                                    <option value="Jam">Jam</option>
+                                    <option value="Hari">Hari</option>
+                                </select>
+                                @error('satuan_waktu')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -400,7 +428,7 @@
                             <input wire:model='s_nama_jenis_layanan' type="numeric"
                                 class="form-control border border-2 p-2" id="jenis_layanan" placeholder="Enter name"
                                 disabled>
-                            @error('jenis_layanan')
+                            @error('s_nama_jenis_layanan')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -409,7 +437,7 @@
                             <label for="nama_layanan">Nama Layanan</label>
                             <input wire:model='nama_layanan' type="name" class="form-control border border-2 p-2"
                                 id="nama_layanan" placeholder="Enter nama layanan" autocomplete="off">
-                            @error('nama_laundry')
+                            @error('nama_layanan')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
 
@@ -421,7 +449,7 @@
                                 <input wire:model='harga_layanan' type="name"
                                     class="form-control border border-2 p-2" id="exampleInputname"
                                     placeholder="Enter name" autocomplete="off">
-                                @error('jenis_laundry')
+                                @error('harga_layanan')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -437,6 +465,33 @@
                                     </option>
                                 </select>
                                 @error('satuan_barang')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row col-12">
+                            <div class="form-group col-9">
+                                <label for="estimasi_pengerjaan">Estimasi Pengerjaan</label>
+                                <input wire:model='estimasi_pengerjaan' type="name"
+                                    class="form-control border border-2 p-2" id="estimasi_pengerjaan"
+                                    placeholder="Enter name" autocomplete="off">
+                                @error('estimasi_pengerjaan')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group col-3">
+                                <label for="satuan_waktu">Waktu</label>
+                                <select class="form-select border border-2 p-2" aria-label="Default select example"
+                                    name='satuan_waktu' id="satuan_waktu">
+                                    <option {{ $satuan_waktu == 'Jam' ? 'selected' : '' }} value="KG">
+                                        Jam
+                                    </option>
+                                    <option {{ $satuan_waktu == 'Hari' ? 'selected' : '' }} value="Pcs">
+                                        Hari
+                                    </option>
+                                </select>
+                                @error('satuan_waktu')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>

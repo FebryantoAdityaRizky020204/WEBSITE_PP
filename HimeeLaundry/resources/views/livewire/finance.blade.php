@@ -2,7 +2,7 @@
     <div class="container-fluid py-4">
 
         <div class="row mt-2">
-            <div class="col-lg-8 col-sm-6 mt-sm-0 mt-4 mb-3">
+            <div class="col-lg-8 col-12 mt-sm-0 mt-4 mb-3">
                 <div class="card">
                     <div class="card-header pb-0 p-3">
                         <div class="d-flex justify-content-between">
@@ -174,7 +174,7 @@
 
             {{-- ? PEMASUKAN --}}
 
-            <div class="col-lg-5 col-md-6 col-12">
+            <div class="col-lg-5 col-md-6 mt-3 col-12">
                 <div class="card">
                     <!-- Card header -->
                     <div class="card-header d-flex flex-row justify-content-between">

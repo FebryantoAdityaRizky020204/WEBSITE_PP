@@ -90,11 +90,11 @@
         </div>
     </header>
     <!-- -------- END HEADER 7 w/ text and video ------- -->
-    <div class="card card-body shadow-xl col-md-5 col-11 mt-n6 pb-0 mx-auto">
+    <div class="card card-body shadow-xl col-md-8 col-lg-4 col-11 mt-n6 pb-0 mx-auto">
         <section>
             <div class="container py-4">
                 <div class="row">
-                    <div class="col-md-9 col-12 mx-auto d-flex justify-content-center flex-column">
+                    <div class="col-md-11 col-12 mx-auto d-flex justify-content-center flex-column">
                         <h4 class="text-center mb-4">ADMIN</h4>
                         <form wire:submit='store'>
                             @if (Session::has('status'))

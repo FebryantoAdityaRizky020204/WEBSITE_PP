@@ -58,7 +58,7 @@
                                     @foreach ($LayananLaundry as $l => $layanan)
                                         @if ($layanan->id_jenis_laundry == $jenis->id)
                                             <div class="row ms-2 p-1 border-start mb-2 border-secondary">
-                                                <span class="text-sm text-secondary font-weight-bold mb-0">{{ $layanan->nama_layanan }}</span>
+                                                <span class="text-sm text-secondary font-weight-bold mb-0">{{ $layanan->nama_layanan }} ({{ $layanan->estimasi_pengerjaan }} {{ $layanan->satuan_waktu }})</span>
                                                 <span class="font-weight-bold">{{ $layanan->harga_layanan }} / {{ $layanan->satuan_barang }}</span>
                                             </div>
                                         @endif

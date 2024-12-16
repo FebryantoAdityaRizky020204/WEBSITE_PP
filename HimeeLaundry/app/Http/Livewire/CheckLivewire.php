@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
+
 use App\Models\Transaksi;
 
 class CheckLivewire extends Component {
@@ -31,7 +33,9 @@ class CheckLivewire extends Component {
 
         if($tr) {
             $this->find_transaksi = $tr;
+            session()->flash('message', 'Transaksi Ditemukan');
         } else {
+            session()->flash('message', 'Transaksi Tidak Ditemukan');
             $this->find_transaksi = "Tidak Ditemukan";
         }
     }

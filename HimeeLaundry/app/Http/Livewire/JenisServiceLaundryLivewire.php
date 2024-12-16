@@ -9,7 +9,7 @@ use Livewire\Component;
 class JenisServiceLaundryLivewire extends Component
 {
     public $jenis_laundry, $id_jenis_operation;
-    public $nama_layanan, $harga_layanan, $satuan_barang, $s_nama_jenis_layanan;
+    public $nama_layanan, $harga_layanan, $satuan_barang, $s_nama_jenis_layanan, $estimasi_pengerjaan, $satuan_waktu;
 
     public function resetInputs(){
         $this->jenis_laundry = '';
@@ -18,6 +18,8 @@ class JenisServiceLaundryLivewire extends Component
         $this->harga_layanan = '';
         $this->satuan_barang = '';
         $this->s_nama_jenis_layanan = '';
+        $this->estimasi_pengerjaan = '';
+        $this->satuan_waktu = '';
         $this->resetValidation();
     }
     
@@ -95,14 +97,18 @@ class JenisServiceLaundryLivewire extends Component
         $this->validate([
             'nama_layanan' => 'required|string',
             'harga_layanan' => 'required|numeric',
-            'satuan_barang' => 'required|string'
+            'satuan_barang' => 'required|string',
+            'estimasi_pengerjaan' => 'required|numeric',
+            'satuan_waktu' => 'required|string',
         ]);
 
         LayananLaundry::create([
             'id_jenis_laundry' => $this->id_jenis_operation,
             'nama_layanan' => $this->nama_layanan,
             'harga_layanan' => $this->harga_layanan,
-            'satuan_barang' => $this->satuan_barang
+            'estimasi_pengerjaan' => $this->estimasi_pengerjaan,
+            'satuan_barang' => $this->satuan_barang,
+            'satuan_waktu' => $this->satuan_waktu,
         ]);
 
         $this->resetInputs();
@@ -115,23 +121,28 @@ class JenisServiceLaundryLivewire extends Component
         $this->nama_layanan = $LayananLaundry->nama_layanan;
         $this->harga_layanan = $LayananLaundry->harga_layanan;
         $this->satuan_barang = $LayananLaundry->satuan_barang;
+        $this->estimasi_pengerjaan = $LayananLaundry->estimasi_pengerjaan;
+        $this->satuan_waktu = $LayananLaundry->satuan_waktu;
         $this->id_jenis_operation = $id;
         $this->s_nama_jenis_layanan = JenisLaundry::where('id', $LayananLaundry->id_jenis_laundry)->first()->jenis_laundry;
     }
 
-    public function editService()
-    {
+    public function editService() {
         $this->validate([
             'nama_layanan' => 'required|string',
             'harga_layanan' => 'required|numeric',
-            'satuan_barang' => 'required|string'
+            'satuan_barang' => 'required|string',
+            'estimasi_pengerjaan' => 'required|numeric',
+            'satuan_waktu' => 'required|string',
         ]);
 
         $LayananLaundry = LayananLaundry::where('id', $this->id_jenis_operation)->first();
         $LayananLaundry->update([
             'nama_layanan' => $this->nama_layanan,
             'harga_layanan' => $this->harga_layanan,
-            'satuan_barang' => $this->satuan_barang
+            'satuan_barang' => $this->satuan_barang,
+            'estimasi_pengerjaan' => $this->estimasi_pengerjaan,
+            'satuan_waktu' => $this->satuan_waktu,
         ]);
 
         $this->resetInputs();

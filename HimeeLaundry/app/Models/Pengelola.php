@@ -12,7 +12,7 @@ class Pengelola extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = "Pengelola";
+    protected $table = "pengelola";
 
     protected $fillable = [
         'id',
