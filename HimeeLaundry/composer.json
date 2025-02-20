@@ -17,12 +17,14 @@
         "livewire/livewire": "^3.0"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^2.0",
         "fakerphp/faker": "^1.17",
         "laravel/sail": "^1.12",
+        "laravel/telescope": "^5.5",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^8.1",
-        "phpunit/phpunit": "^10.0"
+        "phpunit/php-code-coverage": "^10.1",
+        "phpunit/phpunit": "^10.5",
+        "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
         "psr-4": {

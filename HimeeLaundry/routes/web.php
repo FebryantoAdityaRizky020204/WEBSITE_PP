@@ -15,6 +15,7 @@ use App\Http\Livewire\DashboardLivewire;
 use App\Http\Livewire\TransactionsLivewire;
 use App\Http\Livewire\DetailTransactionsLivewire;
 use App\Http\Livewire\FinanceLivewire;
+use App\Http\Livewire\TestingLivewire;
 use GuzzleHttp\Middleware;
 
 /*
@@ -52,5 +53,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('transactions/{id}', DetailTransactionsLivewire::class)->name('detail-transactions');
         Route::get('services', JenisServiceLaundryLivewire::class)->name('services');
         Route::get('finance', FinanceLivewire::class)->name('finance');
+        Route::get('testing', TestingLivewire::class)->name('testing');
     });
 });

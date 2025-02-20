@@ -85,7 +85,7 @@
 <div>
     <!-- -------- START HEADER 7 w/ text and video ------- -->
     <header class="bg-gradient-dark">
-        <div class="page-header min-vh-25" style="background-image: url('./assets/img/bg.jpg');">
+        <div class="page-header min-vh-25" style="background-image: url('{{ asset('assets') }}/guest/img/bg.jpg');">
             <span class="mask bg-gradient-dark opacity-6"></span>
         </div>
     </header>
