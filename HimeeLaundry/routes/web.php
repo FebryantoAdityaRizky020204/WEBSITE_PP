@@ -53,6 +53,5 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('transactions/{id}', DetailTransactionsLivewire::class)->name('detail-transactions');
         Route::get('services', JenisServiceLaundryLivewire::class)->name('services');
         Route::get('finance', FinanceLivewire::class)->name('finance');
-        Route::get('testing', TestingLivewire::class)->name('testing');
     });
 });

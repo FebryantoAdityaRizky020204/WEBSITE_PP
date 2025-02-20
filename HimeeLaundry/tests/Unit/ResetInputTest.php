@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use App\Http\Livewire\DashboardLivewire;
-use App\Http\Livewire\DetailTransactionsLivewire;
+use App\Http\Livewire\JenisServiceLaundryLivewire;
 use PhpParser\Node\Expr\Cast\Object_;
 
 class ResetInputTest extends TestCase
@@ -25,27 +25,29 @@ class ResetInputTest extends TestCase
     }
 
     /** @test */
-    // public function reset_input_DetailTransaksiLivewire(): void {
-    //     $detail = new DetailTransactionsLivewire();
+    public function reset_input_FinanceLivewire(): void {
+        $finance = new JenisServiceLaundryLivewire();
+        $finance->jenis_laundry = 'TestInput';
+        $finance->id_jenis_operation = 'TestInput';
+        $finance->nama_layanan = 'TestInput';
+        $finance->harga_layanan = 'TestInput';
+        $finance->satuan_barang = 'TestInput';
+        $finance->s_nama_jenis_layanan = 'TestInput';
+        $finance->estimasi_pengerjaan = 'TestInput';
+        $finance->satuan_waktu = 'TestInput';
+        
 
-    //     $detail->nama_barang = 'TestReset';
-    //     $detail->jumlah_barang = 'TestReset';
-    //     $detail->id_operation = 'TestReset';
-    //     $detail->teks_operation = 'TestReset';
-    //     $detail->nama_pelanggan = 'TestReset';
-    //     $detail->nomor_telepon = 'TestReset';
-    //     $detail->status_pembayaran = 'TestReset';
-    //     $detail->status_laundry = 'TestReset';
+        $finance->resetInputs();
 
-    //     $detail->resetInputs();
+        $this->assertEquals('', $finance->jenis_laundry);
+        $this->assertEquals('', $finance->id_jenis_operation);
+        $this->assertEquals('', $finance->nama_layanan);
+        $this->assertEquals('', $finance->harga_layanan);
+        $this->assertEquals('', $finance->satuan_barang);
+        $this->assertEquals('', $finance->s_nama_jenis_layanan);
+        $this->assertEquals('', $finance->estimasi_pengerjaan);
+        $this->assertEquals('', $finance->satuan_waktu);
+    }
 
-    //     $this->assertEquals('', $detail->nama_barang);
-    //     $this->assertEquals('', $detail->jumlah_barang);
-    //     $this->assertEquals('', $detail->id_operation);
-    //     $this->assertEquals('', $detail->teks_operation);
-    //     $this->assertEquals('', $detail->nama_pelanggan);
-    //     $this->assertEquals('', $detail->nomor_telepon);
-    //     $this->assertEquals('', $detail->status_pembayaran);
-    //     $this->assertEquals('', $detail->status_laundry);
-    // }
+    
 }
