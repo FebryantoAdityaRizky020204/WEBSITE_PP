@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Pengelola;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
         Pengelola::factory()->create([
             'nama_pengelola' => 'Admin',
             'email' => 'admin@material.com',
-            'password' => ('secret')
+            'password' => bcrypt('secret')
         ]);
     }
 }
