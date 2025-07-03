@@ -25,21 +25,21 @@
                 <div class="row justify-content-center text-center">
                     <div class="col-md-6">
                         <h1 class="text-gradient text-info">
-                            <span id="state1"
-                                countTo="{{ count($LayananLaundry) }}">{{ count($LayananLaundry) }}</span>
+                            <span id="state1" countTo="{{ count($LayananLaundry) }}">{{ count($LayananLaundry) }}</span>
                         </h1>
                         <h5 class="mt-3">Services</h5>
                         <p class="">
-                            Dengan {{ count($LayananLaundry) }} layanan yang tersedia, yang bisa anda pilih sesuai kebutuhan anda. 
+                            Dengan {{ count($LayananLaundry) }} layanan yang tersedia, yang bisa anda pilih sesuai
+                            kebutuhan anda.
                             dengan harga terbaik dan kualitas terjamin.
                         </p>
                     </div>
-                    
+
                     <div class="col-md-6">
                         <h1 class="text-gradient text-info"><span id="state3" countTo="12">12</span>/6</h1>
                         <h5>Support</h5>
                         <p>
-                            kami siap memproses laundry anda 12 jam setiap senin hingga sabtu, 
+                            kami siap memproses laundry anda 12 jam setiap senin hingga sabtu,
                             dapatkan layanan yang terbaik dalam waktu singkat.
                         </p>
                     </div>
@@ -58,8 +58,11 @@
                                     @foreach ($LayananLaundry as $l => $layanan)
                                         @if ($layanan->id_jenis_laundry == $jenis->id)
                                             <div class="row ms-2 p-1 border-start mb-2 border-secondary">
-                                                <span class="text-sm text-secondary font-weight-bold mb-0">{{ $layanan->nama_layanan }} ({{ $layanan->estimasi_pengerjaan }} {{ $layanan->satuan_waktu }})</span>
-                                                <span class="font-weight-bold">{{ $layanan->harga_layanan }} / {{ $layanan->satuan_barang }}</span>
+                                                <span
+                                                    class="text-sm text-secondary font-weight-bold mb-0">{{ $layanan->nama_layanan }}
+                                                    ({{ $layanan->estimasi_pengerjaan }} {{ $layanan->satuan_waktu }})</span>
+                                                <span class="font-weight-bold">{{ $layanan->harga_layanan }} /
+                                                    {{ $layanan->satuan_barang }}</span>
                                             </div>
                                         @endif
                                     @endforeach
@@ -71,7 +74,8 @@
                         <div class="position-sticky" style="top:100px !important">
                             <h4 class>Our Services</h4>
                             <h6 class="text-secondary font-weight-normal">
-                                temukan layanan laundry yang anda butuhkan, kami menyediakan layanan laundry dengan harga terbaik.
+                                temukan layanan laundry yang anda butuhkan, kami menyediakan layanan laundry dengan
+                                harga terbaik.
                             </h6>
                         </div>
                     </div>

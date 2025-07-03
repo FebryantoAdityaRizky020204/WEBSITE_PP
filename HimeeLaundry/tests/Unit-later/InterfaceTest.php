@@ -6,7 +6,6 @@ use Tests\TestCase;
 use App\Http\Livewire\CheckLivewire;
 use App\Http\Livewire\GuestLivewire;
 use App\Http\Livewire\Auth\LoginLivewire;
-use App\Http\Livewire\JenisServiceLaundryLivewire;
 use Livewire\Livewire;
 
 class InterfaceTest extends TestCase {
