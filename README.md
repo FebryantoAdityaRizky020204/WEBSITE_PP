@@ -107,14 +107,14 @@ php artisan serve
 
 ## 📸 Cuplikan Layar
 
-### 🌐 Landing Page
-![Landing Page](screenshots/landing.png)
+### 🌐 Landing Page Guest
+![Landing Page](screenshots/Picture1.png)
 
 ### 🔍 Cek Status Laundry
-![Cek Status](screenshots/cek_status.png)
+![Cek Status](screenshots/Picture2.png)
 
-### 🧾 Halaman Admin - Transaksi
-![Dashboard](screenshots/admin_dashboard.png)
+### 🧾 Halaman Admin - Dashboard
+![Dashboard](screenshots/Picture3.png)
 
 ---
 
